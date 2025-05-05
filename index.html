@@ -63,10 +63,14 @@ body {
 .banner {
   width: 100%;
   height: 250px;
-  background: url('Banner.jpg') no-repeat center center;
+  background: url('Images/Banner.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   margin-bottom: 2em;
 }
+
 
 h2 {
   text-align: center;
@@ -106,6 +110,93 @@ h2 {
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
+.experience-box, .pub-box {
+  background-color: #f4f4f4;
+  width: 250px;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.experience-box h3, .pub-box h3 {
+  color: #007acc;
+  margin-bottom: 0.5em;
+}
+
+.experience-box:hover, .pub-box:hover {
+  transform: scale(1.03);
+}
+
+.experience-box .expanded-content, .pub-box .expanded-content {
+  display: none;
+  margin-top: 1em;
+  font-size: 0.95em;
+}
+
+.experience-box.expanded, .pub-box.expanded {
+  width: 100%;
+  max-width: 600px;
+  background-color: #e8f4ff;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.experience-box.expanded .expanded-content, .pub-box.expanded .expanded-content {
+  display: block;
+}
+
+
+.pub-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.pub-box {
+  background-color: #f4f4f4;
+  width: 250px;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pub-box h3 {
+  color: #007acc;
+  margin-bottom: 0.5em;
+}
+
+.pub-box.expanded {
+  width: 100%;
+  max-width: 600px;
+  background-color: #e8f4ff;
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.expanded-content {
+  display: none;
+  margin-top: 1em;
+  font-size: 0.95em;
+}
+
+.pub-box.expanded .expanded-content {
+  display: block;
+}
+
+.pub-box:hover {
+  transform: scale(1.03);
+}
+
   </style>
 </head>
 <body>
@@ -115,9 +206,9 @@ h2 {
     <span>Welcome to my portfolio</span>
   </div>
   <div class="right-controls">
-    <button>About</button>
+    <button>Experience</button>
     <button>Projects</button>
-    <button>Skills</button>
+    <button>Papers & Patent</button>
     <button>Contact</button>
   </div>
 </div>
@@ -162,7 +253,93 @@ h2 {
     <p>Developed microcontroller-based systems using Arduino Uno, including drone stabilization via counter-rotating propellers.</p>
   </div>
 </div>
+<section id="experience">
+  <h2>Experience</h2>
+  <div class="pub-container">
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Research Assistant – ABC Institute</h3>
+      <p class="summary">Click to view more details.</p>
+      <div class="expanded-content">
+        <p>Worked on scalable parallel algorithms for scientific computing using OpenMP and MPI. Contributed to papers on swarm-based optimizations.</p>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Data Engineer – XYZ Corp</h3>
+      <p class="summary">Click to view more details.</p>
+      <div class="expanded-content">
+        <p>Built distributed ETL pipelines using Spark and HDFS. Integrated ML models for automated anomaly detection in financial datasets.</p>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>AI Developer Intern – DEF Labs</h3>
+      <p class="summary">Click to view more details.</p>
+      <div class="expanded-content">
+        <p>Developed GPT-4-based assistants for research automation. Integrated Whisper API for speech-to-text applications in robotics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="publications">
+  <h2>Publications</h2>
+  <div class="pub-container">
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Papers</h3>
+      <p class="summary">Click to view published papers.</p>
+      <div class="expanded-content">
+        <p>Published papers include research on distributed systems, swarm optimization, and machine learning applications.</p>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Patent</h3>
+      <p class="summary">Click to view patent details.</p>
+      <div class="expanded-content">
+        <p>Patent filed on an adaptive load-balancing algorithm for heterogeneous clusters, improving energy efficiency.</p>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Conference</h3>
+      <p class="summary">Click to view conference talks.</p>
+      <div class="expanded-content">
+        <p>Presented work at IEEE ICMLA and ACM SIGKDD on AI integration in high-performance computing environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 </body>
+<script>
+function toggleExpand(element) {
+  const isExpanded = element.classList.contains('expanded');
+
+  // Collapse all boxes first
+  document.querySelectorAll('.pub-box').forEach(box => box.classList.remove('expanded'));
+
+  // Expand the clicked one if it wasn't already expanded
+  if (!isExpanded) {
+    element.classList.add('expanded');
+  }
+}
+</script>
+<script>
+function toggleExpand(element) {
+  const isExpanded = element.classList.contains('expanded');
+
+  // Collapse all boxes first
+  document.querySelectorAll('.pub-box, .experience-box').forEach(box => box.classList.remove('expanded'));
+
+  // Expand the clicked one if it wasn't already expanded
+  if (!isExpanded) {
+    element.classList.add('expanded');
+  }
+}
+</script>
+
 </html>
