@@ -1,53 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aaron Mackenzie - Portfolio</title>
+  <meta charset="UTF-8" />
+  <title>Aaron Mackenzie Misquith - Portfolio</title>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #333; color: white; padding: 1em; text-align: center; }
-    .content { padding: 2em; }
-    .project { background: white; padding: 1em; margin: 1em 0; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    h2 { margin-top: 0; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: white;
+  color: #333;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  border-bottom: 1px solid #ccc;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.right-controls span {
+  font-size: 1em;
+  color: #666;
+}
+
+.right-controls button {
+  padding: 0.5em 1em;
+  border: none;
+  background-color: #007acc;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.right-controls button:hover {
+  background-color: #005f99;
+}
+
+.title {
+  padding: 1.5em 2em 0.5em;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.summary {
+  padding: 0 2em 2em;
+  max-width: 1000px;
+  font-size: 1.1em;
+}
+
+.banner {
+  width: 100%;
+  height: 250px;
+  background: url('Banner.jpg') no-repeat center center;
+  background-size: cover;
+  margin-bottom: 2em;
+}
+
+h2 {
+  text-align: center;
+  margin: 1.5em 0 0.5em;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.skill-box {
+  background-color: #f4f4f4;
+  padding: 1.5em;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-box h3 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  color: #007acc;
+}
+
+.skill-box p {
+  font-size: 1em;
+  color: #333;
+}
+
+.skill-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Aaron Mackenzie</h1>
-    <p>Welcome to my portfolio</p>
-  </header>
 
-  <div class="content">
-    <section>
-      <h2>About Me</h2>
-      <p>I'm an aspiring developer passionate about building projects that solve real-world problems.</p>
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-
-      <div class="project">
-        <h3>Project Title 1</h3>
-        <p>Short description of what the project does, what tech you used, and what makes it unique.</p>
-        <a href="https://github.com/aaronmackenzie/project1" target="_blank">View on GitHub</a>
-      </div>
-
-      <div class="project">
-        <h3>Project Title 2</h3>
-        <p>Description of another project.</p>
-        <a href="https://github.com/aaronmackenzie/project2" target="_blank">View on GitHub</a>
-      </div>
-
-      <!-- Add more projects here -->
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>📧 aaron@example.com</p>
-      <p><a href="https://github.com/aaronmackenzie">GitHub</a> | <a href="https://linkedin.com/in/aaronmackenzie">LinkedIn</a></p>
-    </section>
+ <div class="top-bar">
+  <div class="left-controls">
+    <span>Welcome to my portfolio</span>
   </div>
+  <div class="right-controls">
+    <button>About</button>
+    <button>Projects</button>
+    <button>Skills</button>
+    <button>Contact</button>
+  </div>
+</div>
+
+
+  <div class="title">Aaron Mackenzie Misquith</div>
+
+  <div class="summary">
+    I specialize in high-performance computing with a focus on distributed systems, parallel algorithm design, and evolutionary optimization. I build scalable solutions using Ray, Apache Spark, OpenMP, and HDFS, integrating machine learning with Python and scikit-learn to enhance system intelligence.
+  </div>
+
+  <div class="banner"></div>
+
+  <h2>Skills</h2>
+  <div class="skills-container">
+  <div class="skill-box">
+    <h3>Programming & Algorithms</h3>
+    <p>Proficient in Python, C, and C++. Strong foundation in system programming, data structures, and algorithm development.</p>
+  </div>
+  <div class="skill-box">
+    <h3>Data Science & Machine Learning</h3>
+    <p>Skilled in data manipulation, preprocessing, and modeling using NumPy, Pandas, and scikit-learn.</p>
+  </div>
+  <div class="skill-box">
+    <h3>Distributed & Parallel Computing</h3>
+    <p>Hands-on experience with Ray, Apache Spark, PySpark, and OpenMP for scalable parallel computing. Familiar with Hadoop Distributed File System (HDFS).</p>
+  </div>
+  <div class="skill-box">
+    <h3>Algorithm Design</h3>
+    <p>Designed and implemented custom optimization and feature selection algorithms for distributed systems.</p>
+  </div>
+  <div class="skill-box">
+    <h3>Evolutionary Computing</h3>
+    <p>Advanced knowledge of swarm-based and evolutionary algorithms such as PSO, GSO, Bison Algorithm, and Genetic Algorithms.</p>
+  </div>
+  <div class="skill-box">
+    <h3>APIs & AI Integration</h3>
+    <p>Experience integrating APIs including Zerodha (for trade execution), Whisper (for speech-to-text), and GPT-4 (for AI interaction).</p>
+  </div>
+  <div class="skill-box">
+    <h3>Embedded Systems & Robotics</h3>
+    <p>Developed microcontroller-based systems using Arduino Uno, including drone stabilization via counter-rotating propellers.</p>
+  </div>
+</div>
+
+
 </body>
 </html>
