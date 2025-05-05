@@ -1,345 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aaron Mackenzie Misquith - Portfolio</title>
+  <meta charset="UTF-8">
+  <title>Aaron Mackenzie - Portfolio</title>
   <style>
-  * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  background: white;
-  color: #333;
-}
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em 2em;
-  border-bottom: 1px solid #ccc;
-}
-
-.right-controls {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-}
-
-.right-controls span {
-  font-size: 1em;
-  color: #666;
-}
-
-.right-controls button {
-  padding: 0.5em 1em;
-  border: none;
-  background-color: #007acc;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.right-controls button:hover {
-  background-color: #005f99;
-}
-
-.title {
-  padding: 1.5em 2em 0.5em;
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.summary {
-  padding: 0 2em 2em;
-  max-width: 1000px;
-  font-size: 1.1em;
-}
-
-.banner {
-  width: 100%;
-  height: 500px;
-  background: url('Images/Banner.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-bottom: 2em;
-}
-
-
-h2 {
-  text-align: center;
-  margin: 1.5em 0 0.5em;
-}
-
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-  padding: 2em;
-}
-
-.skill-box {
-  background-color: #f4f4f4;
-  padding: 1.5em;
-  border-radius: 8px;
-  width: 250px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-box h3 {
-  font-size: 1.2em;
-  margin-bottom: 1em;
-  color: #007acc;
-}
-
-.skill-box p {
-  font-size: 1em;
-  color: #333;
-}
-
-.skill-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-}
-
-.experience-box, .pub-box {
-  background-color: #f4f4f4;
-  width: 250px;
-  padding: 1.5em;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.experience-box h3, .pub-box h3 {
-  color: #007acc;
-  margin-bottom: 0.5em;
-}
-
-.experience-box:hover, .pub-box:hover {
-  transform: scale(1.03);
-}
-
-.experience-box .expanded-content, .pub-box .expanded-content {
-  display: none;
-  margin-top: 1em;
-  font-size: 0.95em;
-}
-
-.experience-box.expanded, .pub-box.expanded {
-  width: 100%;
-  max-width: 600px;
-  background-color: #e8f4ff;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  z-index: 2;
-}
-
-.experience-box.expanded .expanded-content, .pub-box.expanded .expanded-content {
-  display: block;
-}
-
-
-.pub-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2em;
-  padding: 2em;
-}
-
-.pub-box {
-  background-color: #f4f4f4;
-  width: 250px;
-  padding: 1.5em;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.pub-box h3 {
-  color: #007acc;
-  margin-bottom: 0.5em;
-}
-
-.pub-box.expanded {
-  width: 100%;
-  max-width: 600px;
-  background-color: #e8f4ff;
-  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
-  z-index: 2;
-}
-
-.expanded-content {
-  display: none;
-  margin-top: 1em;
-  font-size: 0.95em;
-}
-
-.pub-box.expanded .expanded-content {
-  display: block;
-}
-
-.pub-box:hover {
-  transform: scale(1.03);
-}
-
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 1em; text-align: center; }
+    .content { padding: 2em; }
+    .project { background: white; padding: 1em; margin: 1em 0; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; }
+    a { color: #007acc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Aaron Mackenzie</h1>
+    <p>Welcome to my portfolio</p>
+  </header>
 
- <div class="top-bar">
-  <div class="left-controls">
-    <span>Welcome to my portfolio</span>
-  </div>
-  <div class="right-controls">
-    <button>Experience</button>
-    <button>Projects</button>
-    <button>Papers & Patent</button>
-    <button>Contact</button>
-  </div>
-</div>
+  <div class="content">
+    <section>
+      <h2>About Me</h2>
+      <p>I'm an aspiring developer passionate about building projects that solve real-world problems.</p>
+    </section>
 
+    <section>
+      <h2>Projects</h2>
 
-  <div class="title">Aaron Mackenzie Misquith</div>
-
-  <div class="summary">
-    I specialize in high-performance computing with a focus on distributed systems, parallel algorithm design, and evolutionary optimization. I build scalable solutions using Ray, Apache Spark, OpenMP, and HDFS, integrating machine learning with Python and scikit-learn to enhance system intelligence.
-  </div>
-
-  <div class="banner"></div>
-
-  <h2>Skills</h2>
-  <div class="skills-container">
-  <div class="skill-box">
-    <h3>Programming & Algorithms</h3>
-    <p>Proficient in Python, C, and C++. Strong foundation in system programming, data structures, and algorithm development.</p>
-  </div>
-  <div class="skill-box">
-    <h3>Data Science & Machine Learning</h3>
-    <p>Skilled in data manipulation, preprocessing, and modeling using NumPy, Pandas, and scikit-learn.</p>
-  </div>
-  <div class="skill-box">
-    <h3>Distributed & Parallel Computing</h3>
-    <p>Hands-on experience with Ray, Apache Spark, PySpark, and OpenMP for scalable parallel computing. Familiar with Hadoop Distributed File System (HDFS).</p>
-  </div>
-  <div class="skill-box">
-    <h3>Algorithm Design</h3>
-    <p>Designed and implemented custom optimization and feature selection algorithms for distributed systems.</p>
-  </div>
-  <div class="skill-box">
-    <h3>Evolutionary Computing</h3>
-    <p>Advanced knowledge of swarm-based and evolutionary algorithms such as PSO, GSO, Bison Algorithm, and Genetic Algorithms.</p>
-  </div>
-  <div class="skill-box">
-    <h3>APIs & AI Integration</h3>
-    <p>Experience integrating APIs including Zerodha (for trade execution), Whisper (for speech-to-text), and GPT-4 (for AI interaction).</p>
-  </div>
-  <div class="skill-box">
-    <h3>Embedded Systems & Robotics</h3>
-    <p>Developed microcontroller-based systems using Arduino Uno, including drone stabilization via counter-rotating propellers.</p>
-  </div>
-</div>
-<section id="experience">
-  <h2>Experience</h2>
-  <div class="pub-container">
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Research Assistant – ABC Institute</h3>
-      <p class="summary">Click to view more details.</p>
-      <div class="expanded-content">
-        <p>Worked on scalable parallel algorithms for scientific computing using OpenMP and MPI. Contributed to papers on swarm-based optimizations.</p>
+      <div class="project">
+        <h3>Project Title 1</h3>
+        <p>Short description of what the project does, what tech you used, and what makes it unique.</p>
+        <a href="https://github.com/aaronmackenzie/project1" target="_blank">View on GitHub</a>
       </div>
-    </div>
 
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Data Engineer – XYZ Corp</h3>
-      <p class="summary">Click to view more details.</p>
-      <div class="expanded-content">
-        <p>Built distributed ETL pipelines using Spark and HDFS. Integrated ML models for automated anomaly detection in financial datasets.</p>
+      <div class="project">
+        <h3>Project Title 2</h3>
+        <p>Description of another project.</p>
+        <a href="https://github.com/aaronmackenzie/project2" target="_blank">View on GitHub</a>
       </div>
-    </div>
 
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>AI Developer Intern – DEF Labs</h3>
-      <p class="summary">Click to view more details.</p>
-      <div class="expanded-content">
-        <p>Developed GPT-4-based assistants for research automation. Integrated Whisper API for speech-to-text applications in robotics.</p>
-      </div>
-    </div>
+      <!-- Add more projects here -->
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>📧 aaron@example.com</p>
+      <p><a href="https://github.com/aaronmackenzie">GitHub</a> | <a href="https://linkedin.com/in/aaronmackenzie">LinkedIn</a></p>
+    </section>
   </div>
-</section>
-
-
-
-<section id="publications">
-  <h2>Publications</h2>
-  <div class="pub-container">
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Papers</h3>
-      <p class="summary">Click to view published papers.</p>
-      <div class="expanded-content">
-        <p>Published papers include research on distributed systems, swarm optimization, and machine learning applications.</p>
-      </div>
-    </div>
-
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Patent</h3>
-      <p class="summary">Click to view patent details.</p>
-      <div class="expanded-content">
-        <p>Patent filed on an adaptive load-balancing algorithm for heterogeneous clusters, improving energy efficiency.</p>
-      </div>
-    </div>
-
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Conference</h3>
-      <p class="summary">Click to view conference talks.</p>
-      <div class="expanded-content">
-        <p>Presented work at IEEE ICMLA and ACM SIGKDD on AI integration in high-performance computing environments.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 </body>
-<script>
-function toggleExpand(element) {
-  const isExpanded = element.classList.contains('expanded');
-
-  // Collapse all boxes first
-  document.querySelectorAll('.pub-box').forEach(box => box.classList.remove('expanded'));
-
-  // Expand the clicked one if it wasn't already expanded
-  if (!isExpanded) {
-    element.classList.add('expanded');
-  }
-}
-</script>
-<script>
-function toggleExpand(element) {
-  const isExpanded = element.classList.contains('expanded');
-
-  // Collapse all boxes first
-  document.querySelectorAll('.pub-box, .experience-box').forEach(box => box.classList.remove('expanded'));
-
-  // Expand the clicked one if it wasn't already expanded
-  if (!isExpanded) {
-    element.classList.add('expanded');
-  }
-}
-</script>
-
 </html>
