@@ -1,53 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aaron Mackenzie - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Aaron Mackenzie Misquith - Portfolio</title>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background: #333; color: white; padding: 1em; text-align: center; }
-    .content { padding: 2em; }
-    .project { background: white; padding: 1em; margin: 1em 0; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    h2 { margin-top: 0; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: white;
+  color: #333;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3em 1em;
+  border-bottom: 3px solid #ccc;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.right-controls span.hpc-role {
+  font-size: 1.3em;
+  font-style: italic;
+  color: #007acc;
+  font-family: 'cursive', sans-serif;
+}
+
+.welcome-text,
+.hpc-role {
+  font-size: 1.5em;
+  font-style: normal; /* since font handles style */
+  font-family: 'Dancing Script', cursive;
+  color: #007acc;
+}
+
+
+
+.title {
+  padding: 1.5em 2em 0.5em;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.summary {
+  padding: 0 2em 2em;
+  max-width: 1000px;
+  font-size: 1.1em;
+}
+
+.banner {
+  width: 100%;
+  height: 350px;
+  background: url('Images/Banner.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 2em;
+}
+
+h2 {
+  text-align: center;
+  margin: 1.5em 0 0.5em;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.skill-box {
+  background-color: #f4f4f4;
+  padding: 1.5em;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-box h3 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  color: #007acc;
+}
+
+.skill-box p {
+  font-size: 1em;
+  color: #333;
+}
+
+.skill-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+
+.experience-box, .pub-box {
+  background-color: #f4f4f4;
+  width: 250px;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: height 0.6s ease, max-width 0.6s ease, width 0.6s ease, transform 0.6s ease;
+  position: relative;
+  overflow: hidden;
+  height: 80px;
+  max-width: 250px;
+  width: 100%;
+  transform: scale(1);
+}
+
+.experience-box h3, .pub-box h3 {
+  color: #007acc;
+  margin-bottom: 0.5em;
+}
+
+.experience-box:hover, .pub-box:hover {
+  transform: scale(1.03);
+}
+
+.experience-box .expanded-content, .pub-box .expanded-content {
+  display: none;
+  margin-top: 1em;
+  font-size: 0.95em;
+}
+
+.experience-box.expanded, .pub-box.expanded {
+  max-width: 600px;
+  background-color: #e8f4ff;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  transform: scale(1.02);
+}
+
+.experience-box.expanded .expanded-content, .pub-box.expanded .expanded-content {
+  display: block;
+}
+
+.pub-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+  padding: 2em;
+}
+
+.projects-list {
+  list-style-type: none;
+  padding: 2em;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.project {
+  opacity: 0;
+  transform: translateY(200px);
+  transition: opacity 2.6s ease-out, transform 2.6s ease-out;
+}
+
+.project.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#contact {
+  padding: 2em;
+  text-align: center;
+}
+
+.contact-details {
+  font-size: 1.1em;
+  line-height: 1.8em;
+  color: #333;
+}
+
+.contact-details a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Aaron Mackenzie</h1>
-    <p>Welcome to my portfolio</p>
-  </header>
 
-  <div class="content">
-    <section>
-      <h2>About Me</h2>
-      <p>I'm an aspiring developer passionate about building projects that solve real-world problems.</p>
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-
-      <div class="project">
-        <h3>Project Title 1</h3>
-        <p>Short description of what the project does, what tech you used, and what makes it unique.</p>
-        <a href="https://github.com/aaronmackenzie/project1" target="_blank">View on GitHub</a>
-      </div>
-
-      <div class="project">
-        <h3>Project Title 2</h3>
-        <p>Description of another project.</p>
-        <a href="https://github.com/aaronmackenzie/project2" target="_blank">View on GitHub</a>
-      </div>
-
-      <!-- Add more projects here -->
-    </section>
-
-    <section>
-      <h2>Contact</h2>
-      <p>📧 aaron@example.com</p>
-      <p><a href="https://github.com/aaronmackenzie">GitHub</a> | <a href="https://linkedin.com/in/aaronmackenzie">LinkedIn</a></p>
-    </section>
+<div class="top-bar">
+  <div class="left-controls">
+    <span class="welcome-text">Welcome to my portfolio</span>
   </div>
+  <div class="right-controls">
+    <span class="hpc-role">High-Performance Computing Engineer</span>
+  </div>
+</div>
+
+
+
+
+  <div class="title">Aaron Mackenzie Misquith</div>
+
+  <div class="summary">
+    I’m a performance-driven computing engineer specializing in high-performance and distributed systems, with a passion for solving complex problems at scale. My expertise lies in parallel algorithm design, evolutionary optimization, and large-scale data processing using frameworks like Apache Spark, Ray, OpenMP, and HDFS. I integrate these systems with machine learning models using Python and scikit-learn to create intelligent, scalable solutions that push the boundaries of computational efficiency.
+     </div>
+
+  <div class="banner"></div>
+
+  <h2>Skills</h2>
+<p class="summary">Click to view more details.</p>
+<div class="pub-container">
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>High-Performance & Distributed Computing</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Designed and implemented HPC and distributed systems for data-intensive workloads.</li>
+        <li>Built scalable solutions using Apache Spark, Ray, and OpenMP.</li>
+        <li>Tuned Spark clusters for resource efficiency and minimized job latency.</li>
+        <li>Used HDFS for fault-tolerant storage of structured/unstructured data.</li>
+        <li>Focused on real-time, scalable, and fault-tolerant data pipelines.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Algorithm Development & Optimization</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Developed swarm intelligence and evolutionary algorithms (PSO, GA, ACO, GSO).</li>
+        <li>Parallelized algorithms using Spark RDDs and DataFrames for scalability.</li>
+        <li>Created hybrid variants for high-dimensional feature selection tasks.</li>
+        <li>Benchmarked on Ackley, Rosenbrock, Schwefel, and Rastrigin functions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Machine Learning & Forecasting</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Implemented supervised and unsupervised models using scikit-learn.</li>
+        <li>Used Random Forest, XGBoost, Lasso, Ridge, SVM, and SVR models.</li>
+        <li>Built forecasting systems using ARIMA, Prophet, and GBMs.</li>
+        <li>Evaluated models with MAE, RMSE, MAPE, R²; used cross-validation and diagnostics.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Data Engineering & Automation</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Engineered data pipelines for collection, cleaning, transformation.</li>
+        <li>Used NumPy, Pandas for in-memory processing; handled ETL from APIs and databases.</li>
+        <li>Automated analytics and reports with robust exception handling and unit tests.</li>
+        <li>Implemented real-time ingestion with Kafka and Spark Structured Streaming.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Data Management</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Designed and optimized schemas for PostgreSQL, MySQL, and SQLite.</li>
+        <li>Improved query performance with indexed views, stored procedures, and joins.</li>
+        <li>Ensured ACID-compliance and transaction safety.</li>
+        <li>Interfaced with DBs using SQLAlchemy and psycopg2 in production.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Quantitative Systems & Trading Automation</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Built algorithmic trading systems with real-time signal processing.</li>
+        <li>Backtested strategies using historical data and technical indicators (MACD, RSI, etc.).</li>
+        <li>Executed trades via Zerodha Kite and Alpaca APIs.</li>
+        <li>Included risk management, latency tracking, and automated adaptation systems.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Visualization & Reporting</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Created dashboards using Power BI with real-time KPIs and formatting logic.</li>
+        <li>Used Matplotlib, Seaborn, Plotly, and Dash for analysis and web dashboards.</li>
+        <li>Built visual monitors for system health, trading, and HPC performance.</li>
+        <li>Focused on dynamic, contextual insights for diverse audiences.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pub-box" onclick="toggleExpand(this)">
+    <h3>Tools & Workflow Management</h3>
+    <div class="expanded-content">
+      <ul>
+        <li>Practiced GitFlow branching, code reviews, CI/CD pipelines.</li>
+        <li>Used Jira, GitHub Projects, PyTest, venv, and conda for agile dev cycles.</li>
+        <li>Documented with Markdown, OpenAPI/Swagger, and maintained changelogs.</li>
+        <li>Containerized pipelines using Docker for reproducibility across platforms.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+<section id="experience">
+  <h2>Experience</h2>
+  <p class="summary">Click to view more details.</p>
+  <div class="pub-container">
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Data Analyst – Bhoruka Power Corporation Limited</h3>
+      <div class="expanded-content">
+        <ul>
+          <li>Reduced monthly data reporting time by 65% by building Python-based ETL pipelines to automate the extraction and transformation of multi-source energy and financial datasets.</li>
+          <li>Improved energy forecasting accuracy by 17% using ensemble ML models (Random Forest, XGBoost) trained on historical plant data for demand prediction and anomaly detection.</li>
+          <li>Built executive-level dashboards in Power BI, leading to faster anomaly detection and decision-making across 4 energy plants.</li>
+          <li>Developed automated scripts to replace 100+ manual tasks per quarter, saving 25+ analyst hours monthly.</li>
+          <li>Responsible for end-to-end data analysis, dashboard creation, predictive modeling, query optimization, and workflow automation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Research Intern – North Dakota State University</h3>
+      <div class="expanded-content">
+        <ul>
+          <li>Developed and parallelized evolutionary algorithms (e.g., PSO, Glowworm Swarm, Genetic Algorithm, Ant Colony) using Apache Spark and HDFS for distributed optimization.</li>
+          <li>Optimized Spark clusters for scalable high-performance computing.</li>
+          <li>Designed and implemented 1 novel algorithm and 2 unique feature selection algorithms based on PSO.</li>
+          <li>Applied evolutionary algorithms to benchmark problems like Schwefel and Ackley for optimization.</li>
+          <li>Integrated traditional feature selection methods (12+) and machine learning techniques using NumPy, Pandas, and scikit-learn.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Research Assistant – Dr. Swarnalatha Ks</h3>
+      <div class="expanded-content">
+        <ul>
+          <li>Developed an automated trading bot for executing trades based on predefined algorithms and real-time market data.</li>
+          <li>Designed and optimized trading algorithms using technical indicators and statistical models for profitability and risk minimization.</li>
+          <li>Conducted back-testing using TradersView with historical data to validate and optimize strategies.</li>
+          <li>Integrated financial market APIs (e.g., Zerodha API, Alpaca API) for real-time data processing.</li>
+          <li>Automated the trading process, including signal generation and order execution, for real-money trades.</li>
+          <li>Implemented real-time performance monitoring and dynamic adjustments to enhance trading efficiency.</li>
+          <li>Developed risk management protocols and a risk matrix model to ensure compliance and investment safety.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="publications">
+  <h2>Publications</h2>
+        <p class="summary">Click to view conference talks.</p>
+  <div class="pub-container">
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Publications</h3>
+      <div class="expanded-content">
+        <ul>
+          <li><a href="https://www.mdpi.com/1999-4893/17/11/501" target="_blank">Simone A Ludwig, Jamil Al-Sawwa, Aaron Mackenzie Misquith, "Parallelization of the Bison Algorithm Applied to Data Classification," MDPI Algorithms Journal. (November 2024)</a></li>
+          <li><a href="https://ieeexplore.ieee.org/abstract/document/10796849" target="_blank">Sinha, S., Mackenzie, A., Nayak, U., Sridhar, A., "Trading Auto-bot for Enhanced Financial Decision Making," IEEE SSITCON 2024, DOI: 10.1109/SSITCON62437.2024.10796849. (October 2024)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Patent</h3>
+      <div class="expanded-content">
+        <p>Filed a patent for the "Automated Trading Bot Workflow and Complexity Analysis" with the Indian Office of Intellectual Property, Chennai. (Yet to be granted)</p>
+      </div>
+    </div>
+
+    <div class="pub-box" onclick="toggleExpand(this)">
+      <h3>Conference</h3>
+      <div class="expanded-content">
+        <ul>
+          <li>Trading Auto-bot for Enhanced Financial Decision Making: Presented in 2024 First International Conference on Software, Systems and Information Technology (SSITCON)</li>
+          <li>Performance Benchmarking of Distributed Reinforcement Learning Algorithms: A Case Study Using Spark and Ray - presented at BMSIT (February 2025)</li>
+          <li>Parallelizing Data Mining Algorithms for Fraud Detection in Large-Scale Transaction Datasets: presented at MAHE (March 2025)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="projects">
+  <h2>Minor Projects</h2>
+  <ul class="projects-list">
+    <li class="project">
+      <strong>Recipe Sharing Platform</strong>
+      <ul>
+        <li>Full-Stack Development</li>
+        <li>Built backend with MongoDB Atlas and frontend with JavaScript, Node.js, CSS, and HTML.</li>
+        <li>Hosted locally on localhost:7077 for development and testing.</li>
+      </ul>
+    </li>
+
+    <li class="project">
+      <strong>Drone Project</strong>
+      <ul>
+        <li>Designed a drone using Arduino Uno.</li>
+        <li>Programmed in C++ for basic stability and control.</li>
+      </ul>
+    </li>
+
+    <li class="project">
+      <strong>AR App for Demonstrating Exercise Form</strong>
+      <ul>
+        <li>Created an AR app using Unity and Vuforia.</li>
+        <li>Integrated 3D models to show correct exercise form.</li>
+        <li>Enabled real-time motion tracking.</li>
+      </ul>
+    </li>
+
+    <li class="project">
+      <strong>Personal Assistant</strong>
+      <ul>
+        <li>Developed using Python and GPT-4.</li>
+        <li>Integrated OpenAI Whisper for voice interaction and task automation.</li>
+        <li>Tested against hash functions like MD5, SHA-1, and bcrypt.</li>
+      </ul>
+    </li>
+
+    <li class="project">
+      <strong>Simple Brute Force Attack and Dictionary Attack</strong>
+      <ul>
+        <li>Created a Python brute force script for login systems.</li>
+        <li>Built a dictionary attack script for hash cracking.</li>
+        <li>Used multithreading to increase speed and efficiency.</li>
+      </ul>
+    </li>
+
+    <li class="project">
+      <strong>Automated Subscription Manager (using Indian UPI System)</strong>
+      <ul>
+        <li>Developed a subscription manager with UPI integration for recurring payments.</li>
+        <li>Backend built with Node.js and Express.</li>
+        <li>Frontend enabled user management and payment tracking.</li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+
+<section id="achievements">
+  <h2>Achievements</h2>
+  <ul class="projects-list">
+    <li class="project">• <strong>Student Council President</strong> — NITTE PU College, 2019</li>
+    <li class="project">• <strong>International B-plan Candidate</strong> — Held in Singapore, 2022</li>
+    <li class="project">• <strong>National B-plan Runner-up</strong> — IIT Bombay, 2021</li>
+    <li class="project">• <strong>Regional B-plan Winner</strong> — Organized by LWT Bangalore, 2021</li>
+    <li class="project">• <strong>Amateur Scientist Runner-up</strong> — National U18 robotics comp. by Infosys @ PES University, Bangalore, 2015</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <div class="contact-details">
+    <p><strong>Email:</strong> aaron.misquith@example.com</p>
+    <p><strong>Phone:</strong> +91-9876543210</p>
+    <p><strong>Google Scholar:</strong> <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank">View my profile</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/AaronMackenzie" target="_blank">github.com/AaronMackenzie</a></p>
+  </div>
+</section>
+
+
 </body>
+<script>
+function toggleExpand(element) {
+  const allBoxes = document.querySelectorAll('.pub-box, .experience-box');
+
+  // Collapse all boxes
+  allBoxes.forEach(box => {
+    if (box !== element && box.classList.contains('expanded')) {
+      collapseBox(box);
+    }
+  });
+
+  const isExpanding = !element.classList.contains('expanded');
+
+  if (isExpanding) {
+    expandBox(element);
+  } else {
+    collapseBox(element);
+  }
+}
+
+function expandBox(box) {
+  const contentHeight = box.scrollHeight;
+  box.style.height = box.offsetHeight + "px"; // Set current height
+  box.classList.add("expanded");
+  
+  // Force repaint and then animate to full height
+  requestAnimationFrame(() => {
+    box.style.height = contentHeight + "px";
+  });
+
+  box.addEventListener('transitionend', function handler() {
+    box.style.height = 'auto'; // allow height to adjust naturally after transition
+    box.removeEventListener('transitionend', handler);
+  });
+}
+
+function collapseBox(box) {
+  const contentHeight = box.scrollHeight;
+  box.style.height = contentHeight + "px"; // set full height to allow collapse
+  requestAnimationFrame(() => {
+    box.style.height = "60px"; // shrink to closed size
+  });
+  box.classList.remove("expanded");
+}
+</script>
+
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+document.querySelectorAll('.project-box').forEach(box => {
+  observer.observe(box);
+});
+const projectObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+
+document.querySelectorAll('.project').forEach(project => {
+  projectObserver.observe(project);
+});
+
+</script>
+
+
 </html>
