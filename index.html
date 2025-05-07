@@ -110,23 +110,24 @@ h2 {
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
 }
 
-.experience-box, .pub-box {
+.pub-box, .experience-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background-color: #f4f4f4;
-  width: 250px;
   padding: 1.5em;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  min-width: fit-content;
+  max-width: 600px;
   cursor: pointer;
-  transition: max-width 0.6s ease, transform 0.6s ease, height 0.8s ease; /* Slower transition for smooth effect */
-  position: relative;
   overflow: hidden;
-  max-width: 250px;
-  width: 100%;
-  height: auto; /* Make height auto for the initial state */
-  transform: scale(1);
+  transition: max-width 0.6s ease, transform 0.6s ease, background-color 0.6s ease, box-shadow 0.6s ease;
 }
-
-.experience-box h3, .pub-box h3 {
+.pub-box h3, .experience-box h3 {
+  white-space: nowrap;
+  font-size: 1.2em;
   color: #007acc;
   margin-bottom: 0.5em;
 }
@@ -153,6 +154,39 @@ h2 {
   display: block;
 }
 
+
+.timeline-container {
+  position: relative;
+  margin-left: 2em;
+  padding-left: 2em;
+  border-left: 4px solid #007acc;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1.4em;
+  top: 0.6em;
+  width: 1em;
+  height: 1em;
+  background-color: #007acc;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #007acc;
+}
+
+.timeline-date {
+  display: block;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 0.3em;
+  font-weight: normal;
+}
+
 .pub-container {
   display: flex;
   flex-wrap: wrap;
@@ -173,7 +207,7 @@ h2 {
 .project {
   opacity: 0;
   transform: translateY(200px);
-  transition: opacity 2.6s ease-out, transform 2.6s ease-out;
+  transition: opacity 2.6s ease-out, transform 0.6s ease-out;
 }
 
 .project.visible {
@@ -200,16 +234,30 @@ h2 {
 .contact-details a:hover {
   text-decoration: underline;
 }
-.pub-box, .experience-box {
-  height: 60px;
-  overflow: hidden;
-  transition: height 0.3s ease;
-  cursor: pointer;
+.pub-box h3, .experience-box h3 {
+  white-space: nowrap;
+  font-size: 1.2em;
+  color: #007acc;
+  margin-bottom: 0.5em;
 }
 
-.pub-box.expanded,
-.experience-box.expanded {
-  overflow: visible; /* optional, depending on content */
+.pub-box:not(.expanded), .experience-box:not(.expanded) {
+  min-width: max-content;
+  max-width: max-content;
+  height: auto;
+}
+
+.pub-box.expanded, .experience-box.expanded {
+  max-width: 600px;
+  background-color: #e8f4ff;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
+  min-width: unset;
+}
+.expanded-content {
+  display: none;
+  margin-top: 1em;
+  font-size: 0.95em;
 }
 
 
@@ -342,48 +390,56 @@ h2 {
 
 <section id="experience">
   <h2>Experience</h2>
-  <p class="summary">Click to view more details.</p>
-  <div class="pub-container">
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Data Analyst – Bhoruka Power Corporation Limited</h3>
-      <div class="expanded-content">
-        <ul>
-          <li>Reduced monthly data reporting time by 65% by building Python-based ETL pipelines to automate the extraction and transformation of multi-source energy and financial datasets.</li>
-          <li>Improved energy forecasting accuracy by 17% using ensemble ML models (Random Forest, XGBoost) trained on historical plant data for demand prediction and anomaly detection.</li>
-          <li>Built executive-level dashboards in Power BI, leading to faster anomaly detection and decision-making across 4 energy plants.</li>
-          <li>Developed automated scripts to replace 100+ manual tasks per quarter, saving 25+ analyst hours monthly.</li>
-          <li>Responsible for end-to-end data analysis, dashboard creation, predictive modeling, query optimization, and workflow automation.</li>
-        </ul>
+  <p class="summary">Click to expand each item. Timeline shown on the left.</p>
+  <div class="timeline-container">
+    
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="pub-box" onclick="toggleExpand(this)">
+        <h3>Data Analyst – Bhoruka Power Corporation Limited<br><span class="timeline-date">May 2023 – April 2024</span></h3>
+        <div class="expanded-content">
+          <ul>
+            <li>Reduced monthly data reporting time by 65% by building Python-based ETL pipelines.</li>
+            <li>Improved energy forecasting accuracy by 17% using ensemble ML models.</li>
+            <li>Built executive-level dashboards in Power BI for 4 energy plants.</li>
+            <li>Developed automated scripts saving 25+ analyst hours monthly.</li>
+            <li>Handled end-to-end data analysis, predictive modeling, and workflow automation.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Research Intern – North Dakota State University</h3>
-      <div class="expanded-content">
-        <ul>
-          <li>Developed and parallelized evolutionary algorithms (e.g., PSO, Glowworm Swarm, Genetic Algorithm, Ant Colony) using Apache Spark and HDFS for distributed optimization.</li>
-          <li>Optimized Spark clusters for scalable high-performance computing.</li>
-          <li>Designed and implemented 1 novel algorithm and 2 unique feature selection algorithms based on PSO.</li>
-          <li>Applied evolutionary algorithms to benchmark problems like Schwefel and Ackley for optimization.</li>
-          <li>Integrated traditional feature selection methods (12+) and machine learning techniques using NumPy, Pandas, and scikit-learn.</li>
-        </ul>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="pub-box" onclick="toggleExpand(this)">
+        <h3>Research Intern – North Dakota State University<br><span class="timeline-date">May 2022 – May 2023</span></h3>
+        <div class="expanded-content">
+          <ul>
+            <li>Parallelized PSO, Glowworm Swarm, Genetic Algorithm using Apache Spark and HDFS.</li>
+            <li>Designed 1 novel and 2 PSO-based feature selection algorithms.</li>
+            <li>Applied evolutionary algorithms to benchmark optimization problems.</li>
+            <li>Used NumPy, Pandas, scikit-learn for ML integration.</li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="pub-box" onclick="toggleExpand(this)">
-      <h3>Research Assistant – Dr. Swarnalatha Ks</h3>
-      <div class="expanded-content">
-        <ul>
-          <li>Developed an automated trading bot for executing trades based on predefined algorithms and real-time market data.</li>
-          <li>Designed and optimized trading algorithms using technical indicators and statistical models for profitability and risk minimization.</li>
-          <li>Conducted back-testing using TradersView with historical data to validate and optimize strategies.</li>
-          <li>Integrated financial market APIs (e.g., Zerodha API, Alpaca API) for real-time data processing.</li>
-          <li>Automated the trading process, including signal generation and order execution, for real-money trades.</li>
-          <li>Implemented real-time performance monitoring and dynamic adjustments to enhance trading efficiency.</li>
-          <li>Developed risk management protocols and a risk matrix model to ensure compliance and investment safety.</li>
-        </ul>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="pub-box" onclick="toggleExpand(this)">
+        <h3>Research Assistant – Dr. Swarnalatha Ks<br><span class="timeline-date">Mar 2021 – May 2022</span></h3>
+        <div class="expanded-content">
+          <ul>
+            <li>Built an automated trading bot using market APIs and real-time data.</li>
+            <li>Designed and optimized trading algorithms with statistical models.</li>
+            <li>Conducted strategy back-testing and real-money trade execution.</li>
+            <li>Implemented real-time monitoring and dynamic performance adjustments.</li>
+            <li>Created risk management protocols and compliance models.</li>
+          </ul>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -509,21 +565,7 @@ h2 {
 </body>
 <script>
 function toggleExpand(element) {
-  const allBoxes = document.querySelectorAll('.pub-box, .experience-box');
-
-  allBoxes.forEach(box => {
-    if (box !== element && box.classList.contains('expanded')) {
-      collapseBox(box);
-    }
-  });
-
-  const isExpanding = !element.classList.contains('expanded');
-
-  if (isExpanding) {
-    expandBox(element);
-  } else {
-    collapseBox(element);
-  }
+  element.classList.toggle('expanded');
 }
 
 function expandBox(box) {
@@ -546,7 +588,7 @@ function collapseBox(box) {
   box.style.height = contentHeight + "px";
 
   requestAnimationFrame(() => {
-    box.style.height = "60px";
+    box.style.height = "60px"; // Adjust this if your collapsed box has a different height
   });
 
   box.classList.remove("expanded");
